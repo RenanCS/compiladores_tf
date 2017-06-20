@@ -95,9 +95,9 @@ public TabSimb getLocais() {
       if (tipo == null)  return "null"; 
      	else if (tipo==Parser.Tp_INT)    return "int"; 
       else if (tipo==Parser.Tp_BOOL)   return "boolean"; 
-      else if (tipo==Parser.Tp_FLOAT)  return "float";
+      //else if (tipo==Parser.Tp_FLOAT)  return "float";
       else if (tipo==Parser.Tp_STRING) return "string";
-      else if (tipo==Parser.Tp_STRUCT) return "struct";
+      //else if (tipo==Parser.Tp_STRUCT) return "struct";
       else if (tipo==Parser.Tp_ARRAY)  return "array";
       else if (tipo==Parser.Tp_ERRO)  return  "_erro_";
 	    else                             return "erro/tp";
