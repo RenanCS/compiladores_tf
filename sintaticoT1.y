@@ -20,7 +20,10 @@
 %type <obj> BaseType
 %type <obj> Exp
 %type <ival> INT
-%type <ival> INTEGER_LITERAL
+%type <sval> STRING
+%type <sval> TRUE
+%type <sval> FALSE
+%type <sval> INTEGER_LITERAL
 
 %%
 Goal : MainClass ClassDeclarationList  
@@ -72,25 +75,22 @@ MethodDeclarationList : MethodDeclarationList MethodDeclaration
                       ;
 
 
-MethodDeclaration : PUBLIC Type Identifier {
-                          TS_entry nodo = classeAtual.pesquisa($3);
-                          if (nodo != null) 
-                              yyerror("Funcao: " + $3 + " ja foi declarada");
-                          else {
-                                  nodo = classeAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeFuncao)); 
-                                  funcaoAtual = nodo.getLocais();
-                               }
-                      }
-
-
-
-
-     '(' ParamListOpc ')' '{' VarStatementList RETURN Exp ';' '}'
+MethodDeclaration : PUBLIC Type Identifier 
+                                            {
+                                                TS_entry nodo = classeAtual.pesquisa($3);
+                                                if (nodo != null) 
+                                                    yyerror("Funcao: " + $3 + " ja foi declarada");
+                                                else {
+                                                        nodo = classeAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeFuncao)); 
+                                                        funcaoAtual = nodo.getLocais();
+                                                     }
+                                            }
+                      '(' ParamListOpc ')' '{' VarStatementList RETURN Exp ';' '}'
                   ;
 
-VarStatementList : Type Identifier ';'     VarStatementList
-			   	 | Statement 					StatementList
-				 |
+VarStatementList : Type Identifier ';' VarStatementList
+			           | Statement StatementList
+				         |
                  ;
 
 ParamListOpc  : Type Identifier   {
@@ -122,13 +122,13 @@ StatementList : StatementList Statement
               ;
 
 
-BaseType : 	INT '[' ']' { $$ = Tp_ARRAY; }
-	     | 	BOOL { $$ = Tp_BOOL; }
-	     | 	INT { $$ = Tp_INT; }
+BaseType :  INT '[' ']'   { $$ = Tp_ARRAY; }
+	       | 	BOOL          { $$ = Tp_BOOL; }
+	       | 	INT           { $$ = Tp_INT; }
          ;
 
 Type : BaseType { $$ = $1;}
-	 | 	Identifier {  TS_entry nodo = ts.pesquisa($1);
+	   | 	Identifier {  TS_entry nodo = ts.pesquisa($1);
                           if (nodo != null) 
                               $$ = nodo;
                           else {
@@ -153,10 +153,10 @@ Statement 	: 	'{' StatementList '}'
 	| 	PRINT '(' Exp ')' ';'
                  {
                         if ( ((TS_entry)$3).getTipo() != Tp_STRING.getTipo()) 
-                           yyerror("(sem) expressão (if) deve ser string "+((TS_entry)$3).getTipo());
+                           yyerror("(sem) expressão (print) deve ser string "+((TS_entry)$3).getTipo());
                   } 
-	| 	Identifier '=' Exp ';'
-	| 	Identifier '[' Exp ']' '=' Exp ';'
+	| 	Identifier '=' Exp ';'               { $$ = Tp_ERRO; }
+	| 	Identifier '[' Exp ']' '=' Exp ';'   { $$ = Tp_ERRO; }
   ;
 
 Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_entry)$1, (TS_entry)$3); } 
@@ -165,9 +165,9 @@ Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_ent
     | Exp '-' Exp                                 { $$ = validaTipo('-', (TS_entry)$1, (TS_entry)$3); }
     | Exp '*'Exp                                  { $$ = validaTipo('*', (TS_entry)$1, (TS_entry)$3); }
 	| Exp '[' Exp ']'                        { $$ = Tp_ERRO; }
-	| Exp '.' LEN                            { $$ = Tp_ERRO; }
+	| Exp '.' LEN                                   { $$ = Tp_INT; }
 	| Exp '.' Identifier '(' LExpOpc ')'     { $$ = Tp_ERRO; }
-	| INTEGER_LITERAL                               { $$ = Tp_INT; }
+	| INTEGER_LITERAL                               { $$ = Tp_STRING; }
 	| TRUE                                          { $$ = Tp_BOOL; }
 	| FALSE                                         { $$ = Tp_BOOL; }
 	| Identifier                             { TS_entry nodo = funcaoAtual.pesquisa($1);
@@ -204,11 +204,9 @@ LExpList : ',' Exp  LExpList
   private TabSimb funcaoAtual;
 
   public static TS_entry Tp_INT =  new TS_entry("int", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_FLOAT = new TS_entry("float", null, "", ClasseID.TipoBase);
   public static TS_entry Tp_BOOL = new TS_entry("bool", null, "", ClasseID.TipoBase);
   public static TS_entry Tp_STRING = new TS_entry("string", null, "", ClasseID.TipoBase);
   public static TS_entry Tp_ARRAY = new TS_entry("array", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_STRUCT = new TS_entry("struct", null, "", ClasseID.TipoBase);
   public static TS_entry Tp_ERRO = new TS_entry("_erro_", null, "", ClasseID.TipoBase);
 
   public static final int ARRAY = 1500;
@@ -247,11 +245,9 @@ LExpList : ',' Exp  LExpList
     //
     ts.insert(Tp_ERRO);
     ts.insert(Tp_INT);
-    ts.insert(Tp_FLOAT);
     ts.insert(Tp_BOOL);
     ts.insert(Tp_STRING);
     ts.insert(Tp_ARRAY);
-    ts.insert(Tp_STRUCT);
   }
 
   public void setDebug(boolean debug) {
@@ -291,38 +287,36 @@ LExpList : ',' Exp  LExpList
   TS_entry validaTipo(int operador, TS_entry A, TS_entry B) {
        
          switch ( operador ) {
-              case ATRIB:
-                    if ( (A == Tp_INT && B == Tp_INT)                        ||
-                         ((A == Tp_FLOAT && (B == Tp_INT || B == Tp_FLOAT))) ||
-                         (A ==Tp_STRING)                                     ||
-                         (A == B) )
-                         return A;
-                     else
+              case '=':
+                    if (A != Tp_ERRO && A == B)
+                      return A;
+                    else
                          yyerror("(sem) tipos incomp. para atribuicao: "+ A.getTipoStr() + " = "+B.getTipoStr());
                     break;
-
               case '-' :
               case '*' :
-              case '+' :
-                    if ( A == Tp_INT && B == Tp_INT)
+                    if ( A == Tp_INT && A == B)
                           return Tp_INT;
-                    else if ( (A == Tp_FLOAT && (B == Tp_INT || B == Tp_FLOAT)) ||
-                                (B == Tp_FLOAT && (A == Tp_INT || A == Tp_FLOAT)) ) 
-                         return Tp_FLOAT;
-                    else if (A==Tp_STRING || B==Tp_STRING)
+                    else
+                        yyerror("(sem) tipos incomp.: "+ A.getTipoStr() + " + "+B.getTipoStr());
+                    break;
+              case '+' :
+                    if ( A == Tp_INT && A == B)
+                          return Tp_INT;
+                    else if (A == Tp_STRING || B == Tp_STRING)
                         return Tp_STRING;
                     else
                         yyerror("(sem) tipos incomp. para soma: "+ A.getTipoStr() + " + "+B.getTipoStr());
                     break;
              case '<' :
              case '>' :
-                  if ((A == Tp_INT || A == Tp_FLOAT) && (B == Tp_INT || B == Tp_FLOAT))
+                  if ( A == Tp_INT && A == B)
                          return Tp_BOOL;
                   else
                         yyerror("(sem) tipos incomp. para op relacional: "+ A.getTipoStr() + " > "+B.getTipoStr());
                   break;
              case AND:
-                  if (A == Tp_BOOL && B == Tp_BOOL)
+                  if (A == Tp_BOOL && A == B)
                          return Tp_BOOL;
                  else
                         yyerror("(sem) tipos incomp. para op lógica: "+ A.getTipoStr() + " && "+B.getTipoStr());
