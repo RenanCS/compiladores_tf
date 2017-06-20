@@ -43,20 +43,27 @@ NL  = \n | \r | \r\n
 "new"       { return Parser.NEW; }
 "&&"        { return Parser.AND; }
 
+[:jletter:][:jletterdigit:]*  {  yyparser.yylval = new ParserVal(yytext());
+                     return Parser.IDENT; }  
 
-[a-zA-Z][a-zA-Z0-9_]*   { return Parser.Identifier; }  
+[0-9]+      {  yyparser.yylval = new ParserVal(Integer.parseInt(yytext())); 
+	return Parser.INTEGER_LITERAL; }
 
-[0-9]+      { return Parser.INTEGER_LITERAL; }
-
-"=" |  "<" | "+" | "-" | "*" | "." | "!" |
-"," |
+"(" | 
 "[" | 
-"]" |
-";" |
-"(" |
-")" |
+"]" | 
+")" | 
 "{" |
-"}"     { return (int) yycharat(0); }
+"}" |
+"=" |
+";" |
+"<" | 
+"+" | 
+"-" | 
+"," |
+"*" |
+"!" |
+"." { return (int) yycharat(0); }
 
 [ \t]+    {}
 {NL}+     { yyline++; } 

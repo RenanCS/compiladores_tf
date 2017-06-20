@@ -27,8 +27,8 @@ public class TabSimb
     public TS_entry pesquisa(String umId) {
       for (TS_entry nodo : lista) {
           if (nodo.getId().equals(umId)) {
-	      return nodo;
-            }
+	           return nodo;
+        }
       }
       return null;
     }
