@@ -38,7 +38,7 @@ MainClass : CLASS IDENT '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENT ')'
 
 Class : 	CLASS IDENT {  
                           if (ts.pesquisa($2) != null) yyerror("(Class) classe: " + $2 + " ja declarada.");
-                          else classeAtual = ts.insert(new TS_entry($2, null, $2, ClasseID.NomeClasse)).getLocais();
+                          else classeAtual = ts.insert(new TS_entry($2, null, ClasseID.NomeClasse)).getLocais();
                       } ExtendsClass '{' VarMethodDeclarationList '}'
                  ;
 
@@ -50,7 +50,7 @@ ExtendsClass : EXTENDS IDENT {
 
 VarMethodDeclarationList : Type IDENT  {
                                 if (classeAtual.pesquisa($2) != null) yyerror("Tipo: " + $2 + " ja foi declarado");
-                                else classeAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam)); 
+                                else classeAtual.insert(new TS_entry($2, (TS_entry)$1, ClasseID.NomeParam)); 
                             } ';' VarMethodDeclarationList
                          | MoreMethod
                          ;
@@ -63,13 +63,13 @@ MoreMethod : MoreMethod Method
 
 Method : PUBLIC Type IDENT  {
                               if (classeAtual.pesquisa($3) != null) yyerror("Funcao: " + $3 + " ja foi declarada");
-                              else funcaoAtual = classeAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeFuncao)).getLocais();
+                              else funcaoAtual = classeAtual.insert(new TS_entry($3, (TS_entry)$2, ClasseID.NomeFuncao)).getLocais();
                       } '(' Param ')' '{' VarStatementList RETURN Exp ';' '}'
                   ;
 
 VarStatementList : Type IDENT {
                           if (funcaoAtual.pesquisa($2) != null) yyerror("Tipo ja declarado: " + $2);
-                          else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam));     
+                          else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, ClasseID.NomeParam));     
                     } ';' VarStatementList
 			           | Statement MoreStatement
 				         |
@@ -77,14 +77,14 @@ VarStatementList : Type IDENT {
 
 Param  : Type IDENT {
                           if (funcaoAtual.pesquisa($2) != null) yyerror("Tipo ja declarado: " + $2);
-                          else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam));     
+                          else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, ClasseID.NomeParam));     
                     } MoreParam
         |
         ;
 
 MoreParam : ',' Type IDENT {
                           if (funcaoAtual.pesquisa($3) != null) yyerror("Tipo: " + $3 + " ja foi declarado");
-                          else funcaoAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeParam)); 
+                          else funcaoAtual.insert(new TS_entry($3, (TS_entry)$2, ClasseID.NomeParam)); 
                     } MoreParam
           | 
           ;
@@ -179,11 +179,11 @@ LExpList : ',' Exp  LExpList
   private TabSimb classeAtual;
   private TabSimb funcaoAtual;
 
-  public static TS_entry Tp_INT =  new TS_entry("int", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_BOOL = new TS_entry("bool", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_STRING = new TS_entry("string", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_ARRAY = new TS_entry("array", null, "", ClasseID.TipoBase);
-  public static TS_entry Tp_ERRO = new TS_entry("_erro_", null, "", ClasseID.TipoBase);
+  public static TS_entry Tp_INT =  new TS_entry("int", null, ClasseID.TipoBase);
+  public static TS_entry Tp_BOOL = new TS_entry("bool", null, ClasseID.TipoBase);
+  public static TS_entry Tp_STRING = new TS_entry("string", null, ClasseID.TipoBase);
+  public static TS_entry Tp_ARRAY = new TS_entry("array", null, ClasseID.TipoBase);
+  public static TS_entry Tp_ERRO = new TS_entry("_erro_", null, ClasseID.TipoBase);
 
   public static final int ARRAY = 1500;
   public static final int ATRIB = 1600;

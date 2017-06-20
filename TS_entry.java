@@ -9,7 +9,6 @@ public class TS_entry
 {
    private String id;
    private ClasseID classe;  
-   private String escopo;
    private TS_entry tipo;
    private int nElem;
    private TS_entry tipoBase;
@@ -17,11 +16,9 @@ public class TS_entry
 
 
    // construtor para arrays
-   public TS_entry(String umId, TS_entry umTipo, int ne, TS_entry umTBase, 
-                                               String umEscopo, ClasseID umaClasse) {
+   public TS_entry(String umId, TS_entry umTipo, int ne, TS_entry umTBase, ClasseID umaClasse) {
       id = umId;
       tipo = umTipo;
-      escopo = umEscopo;
       nElem = ne;
       tipoBase = umTBase;
       classe = umaClasse;
@@ -29,8 +26,8 @@ public class TS_entry
    }
 
    // construtor default
-   public TS_entry(String umId, TS_entry umTipo, String escopo, ClasseID classe) {
-      this(umId, umTipo, -1, null, escopo, classe);
+   public TS_entry(String umId, TS_entry umTipo, ClasseID classe) {
+      this(umId, umTipo, -1, null, classe);
    }
 
 
@@ -67,8 +64,6 @@ public TabSimb getLocais() {
 
 	     aux.append("\tClasse: ");
 	     aux.append(classe);
-	     aux.append("\tEscopo: ");
-	     aux.append(String.format("%-4s", escopo));
 	     aux.append("\tTipo: "); 
 	     aux.append(tipo2str(this.tipo)); 
        
