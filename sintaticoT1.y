@@ -15,10 +15,10 @@
 %left '.'
 %left '['
 
-%type <sval> IDENT
+
 %type <obj> Type
-%type <obj> BaseType
 %type <obj> Exp
+%type <sval> IDENT
 %type <ival> INT
 %type <sval> STRING
 %type <sval> TRUE
@@ -26,23 +26,25 @@
 %type <sval> INTEGER_LITERAL
 
 %%
-Goal : MainClass ClassDeclarationList  
+Goal : MainClass MoreClass  
      ;
 
-ClassDeclarationList : ClassDeclarationList ClassDeclaration
+MoreClass : MoreClass Class
                      |
                      ;
  
-MainClass : CLASS IDENT '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENT ')' '{' StatementList '}' '}'
+MainClass : CLASS IDENT '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENT ')' '{' MoreStatement '}' '}'
           ;
 
-ClassDeclaration : 	CLASS IDENT {  
-                          if (ts.pesquisa($2) != null) yyerror("Classe: " + $2 + "< ja foi declarada");
+Class : 	CLASS IDENT {  
+                          if (ts.pesquisa($2) != null) yyerror("(Class) classe: " + $2 + " ja declarada.");
                           else classeAtual = ts.insert(new TS_entry($2, null, $2, ClasseID.NomeClasse)).getLocais();
-                      } extendsOPC '{' VarMethodDeclarationList '}'
+                      } ExtendsClass '{' VarMethodDeclarationList '}'
                  ;
 
-extendsOPC : EXTENDS IDENT
+ExtendsClass : EXTENDS IDENT {
+                    if (ts.pesquisa($2) == null) yyerror("(ExtendsClass) classe: " + $2 + " nao definida.");
+                  }
            |
            ;
 
@@ -50,52 +52,52 @@ VarMethodDeclarationList : Type IDENT  {
                                 if (classeAtual.pesquisa($2) != null) yyerror("Tipo: " + $2 + " ja foi declarado");
                                 else classeAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam)); 
                             } ';' VarMethodDeclarationList
-                         | MethodDeclarationList
+                         | MoreMethod
                          ;
 
 
-MethodDeclarationList : MethodDeclarationList MethodDeclaration
+MoreMethod : MoreMethod Method
                       |
                       ;
 
 
-MethodDeclaration : PUBLIC Type IDENT  {
+Method : PUBLIC Type IDENT  {
                               if (classeAtual.pesquisa($3) != null) yyerror("Funcao: " + $3 + " ja foi declarada");
                               else funcaoAtual = classeAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeFuncao)).getLocais();
-                      } '(' ParamListOpc ')' '{' VarStatementList RETURN Exp ';' '}'
+                      } '(' Param ')' '{' VarStatementList RETURN Exp ';' '}'
                   ;
 
-VarStatementList : Type IDENT ';' VarStatementList
-			           | Statement StatementList
+VarStatementList : Type IDENT {
+                          if (funcaoAtual.pesquisa($2) != null) yyerror("Tipo ja declarado: " + $2);
+                          else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam));     
+                    } ';' VarStatementList
+			           | Statement MoreStatement
 				         |
                  ;
 
-ParamListOpc  : Type IDENT {
+Param  : Type IDENT {
                           if (funcaoAtual.pesquisa($2) != null) yyerror("Tipo ja declarado: " + $2);
                           else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, $2, ClasseID.NomeParam));     
-                    } ParamList
-              |
-              ;
+                    } MoreParam
+        |
+        ;
 
-ParamList : ',' Type IDENT {
+MoreParam : ',' Type IDENT {
                           if (funcaoAtual.pesquisa($3) != null) yyerror("Tipo: " + $3 + " ja foi declarado");
                           else funcaoAtual.insert(new TS_entry($3, (TS_entry)$2, $3, ClasseID.NomeParam)); 
-                    } ParamList
+                    } MoreParam
           | 
           ;
 
 
-StatementList : StatementList Statement
+MoreStatement : MoreStatement Statement
               |
               ;
 
 
-BaseType :  INT '[' ']'   { $$ = Tp_ARRAY; }
-	       | 	BOOL          { $$ = Tp_BOOL; }
-	       | 	INT           { $$ = Tp_INT; }
-         ;
-
-Type : BaseType           { $$ = $1;}
+Type :  INT '[' ']'   { $$ = Tp_ARRAY; }
+     |  BOOL          { $$ = Tp_BOOL; }
+     |  INT           { $$ = Tp_INT; }
 	   | 	IDENT {  
             TS_entry nodo = ts.pesquisa($1);
             if (nodo != null) $$ = nodo;
@@ -107,28 +109,28 @@ Type : BaseType           { $$ = $1;}
      ;
    
 
-Statement 	: 	'{' StatementList '}'
+Statement 	: 	'{' MoreStatement '}'
 	| 	IF '(' Exp ')' 
                   {
                         if ( ((TS_entry)$3).getTipo() != Tp_BOOL.getTipo()) 
-                           yyerror("(sem) expressão (if) deve ser lógica "+((TS_entry)$3).getTipo());
+                           yyerror("(statement) expressão (if) deve ser lógica "+((TS_entry)$3).getTipo());
                   }  Statement ELSE Statement  
 	| 	WHILE '(' Exp ')' 
                  {
                         if ( ((TS_entry)$3).getTipo() != Tp_BOOL.getTipo()) 
-                           yyerror("(sem) expressão (while) deve ser lógica "+((TS_entry)$3).getTipo());
+                           yyerror("(statement) expressão (while) deve ser lógica "+((TS_entry)$3).getTipo());
                   } Statement
 	| 	PRINT '(' Exp ')' ';'
                  {
                         if ( ((TS_entry)$3).getTipo() != Tp_STRING.getTipo()) 
-                           yyerror("(sem) expressão (print) deve ser string "+((TS_entry)$3).getTipo());
+                           yyerror("(statement) expressão (print) deve ser string "+((TS_entry)$3).getTipo());
                   } 
 	| 	IDENT '=' Exp ';' { 
                   TS_entry nodo = funcaoAtual.pesquisa($1);
                   if (nodo == null) nodo = classeAtual.pesquisa($1); 
 
-                  if (nodo == null) yyerror("(sem) var <" + $1 + "> nao declarada");                
-                  else if (nodo.getTipo() != $3 ) yyerror("(sem) tipos incompativeis, variavel: " + $1 + " com " + $3); 
+                  if (nodo == null) yyerror("(statement) var <" + $1 + "> nao declarada");                
+                  else if (nodo.getTipo() != $3 ) yyerror("(statement) tipos incompativeis, variavel: " + $1 + " com " + $3); 
         }
 	| 	IDENT '[' Exp ']' '=' Exp ';'   
   ;
@@ -138,27 +140,27 @@ Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_ent
     | Exp '+' Exp                                 { $$ = validaTipo('+', (TS_entry)$1, (TS_entry)$3); }
     | Exp '-' Exp                                 { $$ = validaTipo('-', (TS_entry)$1, (TS_entry)$3); }
     | Exp '*'Exp                                  { $$ = validaTipo('*', (TS_entry)$1, (TS_entry)$3); }
-	| Exp '[' Exp ']'                        { $$ = Tp_ERRO; }
-	| Exp '.' LEN                                   { $$ = Tp_INT; }
-	| Exp '.' IDENT '(' LExpOpc ')'     { $$ = Tp_ERRO; }
-	| INTEGER_LITERAL                               { $$ = Tp_STRING; }
-	| TRUE                                          { $$ = Tp_BOOL; }
-	| FALSE                                         { $$ = Tp_BOOL; }
-	| IDENT { 
-          TS_entry nodo = funcaoAtual.pesquisa($1);
-          if (nodo == null) nodo = classeAtual.pesquisa($1); 
+  	| Exp '[' Exp ']'                        { $$ = Tp_ERRO; }
+  	| Exp '.' LEN                                   { $$ = Tp_INT; }
+  	| Exp '.' IDENT '(' LExpOpc ')'     { $$ = Tp_ERRO; }
+  	| INTEGER_LITERAL                               { $$ = Tp_STRING; }
+  	| TRUE                                          { $$ = Tp_BOOL; }
+  	| FALSE                                         { $$ = Tp_BOOL; }
+  	| IDENT { 
+            TS_entry nodo = funcaoAtual.pesquisa($1);
+            if (nodo == null) nodo = classeAtual.pesquisa($1); 
 
-          if (nodo == null) yyerror("(sem) var <" + $1 + "> nao declarada");         
-          else $$ = nodo.getTipo();
-      }   
-	| THIS                                   { $$ = Tp_ERRO; }
-	| NEW INT '[' Exp ']' { 
-            if($4 != Tp_INT) yyerror("(sem) tipos incompativeis, deveria ser INT: " + $4);
-            $$ = Tp_ARRAY; 
-      }
-	| NEW IDENT '(' ')'                 { $$ = Tp_ERRO; }
-	| '!' Exp                                       { $$ = $2; }
-	| '(' Exp ')'                                   { $$ = $2; }
+            if (nodo == null) yyerror("(exp) var <" + $1 + "> nao declarada");         
+            else $$ = nodo.getTipo();
+        }   
+  	| THIS                                   { $$ = Tp_ERRO; }
+  	| NEW INT '[' Exp ']' { 
+              if($4 != Tp_INT) yyerror("(exp) tipos incompativeis, deveria ser INT: " + $4);
+              $$ = Tp_ARRAY; 
+        }
+  	| NEW IDENT '(' ')'                 { $$ = Tp_ERRO; }
+  	| '!' Exp                                       { $$ = $2; }
+  	| '(' Exp ')'                                   { $$ = $2; }
     ;
 
 LExpOpc : Exp LExpList
@@ -233,7 +235,7 @@ LExpList : ',' Exp  LExpList
   static boolean interactive;
 
   public static void main(String args[]) throws IOException {
-      System.out.println("\n\nVerificador semantico simples\n");
+      System.out.println("\n\nBEGIN "+args[0]+"\n");
 
       Parser yyparser;
       if ( args.length > 0 ) {
@@ -254,7 +256,7 @@ LExpList : ',' Exp  LExpList
       System.out.println();
       yyparser.listarTS();
 
-      System.out.print("\n\n-------------------------------------------------------------Feito!\n");
+      System.out.print("\n\nEND "+args[0]+"\n");
   //  }
   }
 
@@ -307,3 +309,7 @@ LExpList : ',' Exp  LExpList
             return Tp_ERRO;
         }
 
+//yyerror("BUG --------------   -------------- >" + $1);
+//funcaoAtual.listar();
+//classeAtual.listar();
+//yyerror("FIM --------------   -------------- >" + $1 + "\n\n\n\n");
