@@ -55,34 +55,41 @@ public TabSimb getLocais() {
        return tipoBase; 
    }
 
-   
-   public String toString() {
+   public String toString(String space){
+
        StringBuilder aux = new StringBuilder("");
         
-	     aux.append("Id: ");
-	     aux.append(String.format("%-10s", id));
+       aux.append(space + "Id: ");
+       aux.append(String.format("%-10s", id));
 
-	     aux.append("\tClasse: ");
-	     aux.append(classe);
-	     aux.append("\tTipo: "); 
-	     aux.append(tipo2str(this.tipo)); 
+       aux.append("\tClasse: ");
+       aux.append(classe);
+       aux.append("\tTipo: "); 
+       aux.append(tipo2str(this.tipo)); 
        
       if (this.tipo == Parser.Tp_ARRAY) {
-    	     aux.append(" (ne: ");
-	         aux.append(nElem);
-    	     aux.append(", tBase: ");
-	         aux.append(tipo2str(this.tipoBase));
-    	     aux.append(")");
+           aux.append(" (ne: ");
+           aux.append(nElem);
+           aux.append(", tBase: ");
+           aux.append(tipo2str(this.tipoBase));
+           aux.append(")");
 
     }    
 
         ArrayList<TS_entry> lista = locais.getLista();
+
+      
         for (TS_entry t : lista) {
             aux.append("\n\t");
-	    		  aux.append(t.toString());
+            aux.append(t.toString(space +"\t"));
         }
 
       return aux.toString();
+   }
+
+   
+   public String toString() {
+      return toString("");
 
    }
 

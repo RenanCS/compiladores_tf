@@ -1,0 +1,1381 @@
+
+
+BEGIN testes/BinarySearch.java
+
+ next yychar:258
+reduce
+state 38, reducing 0 by rule 13 (MoreMethod :)
+reduce
+after reduction, shifting from state 38 to state 26
+loop
+yyn:0  state:26  yychar:258
+state 26, shifting to state 31
+loop
+yyn:0  state:31  yychar:-1
+ next yychar:266
+state 31, shifting to state 20
+loop
+yyn:0  state:20  yychar:-1
+ next yychar:278
+reduce
+state 20, reducing 1 by rule 30 (BaseType : INT)
+reduce
+after reduction, shifting from state 31 to state 24
+loop
+state 24, reducing 1 by rule 31 (Type : BaseType)
+reduce
+after reduction, shifting from state 31 to state 36
+loop
+yyn:0  state:36  yychar:278
+state 36, shifting to state 39
+loop
+state 39, reducing 0 by rule 14 ($$3 :)
+reduce
+after reduction, shifting from state 39 to state 42
+loop
+yyn:0  state:42  yychar:-1
+ next yychar:40
+state 42, shifting to state 44
+loop
+yyn:0  state:44  yychar:-1
+ next yychar:266
+state 44, shifting to state 20
+loop
+yyn:0  state:20  yychar:-1
+ next yychar:278
+reduce
+state 20, reducing 1 by rule 30 (BaseType : INT)
+reduce
+after reduction, shifting from state 44 to state 24
+loop
+state 24, reducing 1 by rule 31 (Type : BaseType)
+reduce
+after reduction, shifting from state 44 to state 46
+loop
+yyn:0  state:46  yychar:278
+state 46, shifting to state 49
+loop
+state 49, reducing 0 by rule 20 ($$5 :)
+reduce
+after reduction, shifting from state 49 to state 58
+loop
+yyn:0  state:58  yychar:-1
+ next yychar:41
+reduce
+state 58, reducing 0 by rule 25 (MoreParam :)
+reduce
+after reduction, shifting from state 58 to state 68
+loop
+state 68, reducing 4 by rule 21 (Param : Type IDENT $$5 MoreParam)
+reduce
+after reduction, shifting from state 44 to state 47
+loop
+yyn:0  state:47  yychar:41
+state 47, shifting to state 50
+loop
+yyn:0  state:50  yychar:-1
+ next yychar:123
+state 50, shifting to state 59
+loop
+yyn:0  state:59  yychar:-1
+ next yychar:266
+state 59, shifting to state 20
+loop
+yyn:0  state:20  yychar:-1
+ next yychar:278
+reduce
+state 20, reducing 1 by rule 30 (BaseType : INT)
+reduce
+after reduction, shifting from state 59 to state 24
+loop
+state 24, reducing 1 by rule 31 (Type : BaseType)
+reduce
+after reduction, shifting from state 59 to state 70
+loop
+yyn:0  state:70  yychar:278
+state 70, shifting to state 88
+loop
+state 88, reducing 0 by rule 16 ($$4 :)
+reduce
+after reduction, shifting from state 88 to state 108
+loop
+yyn:0  state:108  yychar:-1
+ next yychar:59
+state 108, shifting to state 126
+loop
+yyn:0  state:126  yychar:-1
+ next yychar:266
+state 126, shifting to state 20
+loop
+yyn:0  state:20  yychar:-1
+ next yychar:278
+reduce
+state 20, reducing 1 by rule 30 (BaseType : INT)
+reduce
+after reduction, shifting from state 126 to state 24
+loop
+state 24, reducing 1 by rule 31 (Type : BaseType)
+reduce
+after reduction, shifting from state 126 to state 70
+loop
+yyn:0  state:70  yychar:278
+state 70, shifting to state 88
+loop
+state 88, reducing 0 by rule 16 ($$4 :)
+reduce
+after reduction, shifting from state 88 to state 108
+loop
+yyn:0  state:108  yychar:-1
+ next yychar:59
+state 108, shifting to state 126
+loop
+yyn:0  state:126  yychar:-1
+ next yychar:278
+state 126, shifting to state 69
+loop
+yyn:0  state:69  yychar:-1
+ next yychar:61
+state 69, shifting to state 63
+loop
+yyn:0  state:63  yychar:-1
+ next yychar:277
+state 63, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 63 to state 84
+loop
+yyn:0  state:84  yychar:-1
+ next yychar:46
+state 84, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:278
+state 130, shifting to state 77
+loop
+state 77, reducing 1 by rule 52 (Exp : IDENT)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 63 to state 84
+loop
+yyn:0  state:84  yychar:-1
+ next yychar:59
+state 84, shifting to state 105
+loop
+state 105, reducing 4 by rule 39 (Statement : IDENT '=' Exp ';')
+reduce
+after reduction, shifting from state 126 to state 72
+loop
+state 72, reducing 0 by rule 27 (MoreStatement :)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:278
+state 90, shifting to state 54
+loop
+yyn:0  state:54  yychar:-1
+ next yychar:61
+state 54, shifting to state 63
+loop
+yyn:0  state:63  yychar:-1
+ next yychar:277
+state 63, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 63 to state 84
+loop
+yyn:0  state:84  yychar:-1
+ next yychar:46
+state 84, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:41
+reduce
+state 130, reducing 0 by rule 59 (LExpOpc :)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 63 to state 84
+loop
+yyn:0  state:84  yychar:-1
+ next yychar:59
+state 84, shifting to state 105
+loop
+state 105, reducing 4 by rule 39 (Statement : IDENT '=' Exp ';')
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:268
+state 90, shifting to state 51
+loop
+yyn:0  state:51  yychar:-1
+ next yychar:40
+state 51, shifting to state 60
+loop
+yyn:0  state:60  yychar:-1
+ next yychar:277
+state 60, shifting to state 76
+loop
+state 76, reducing 1 by rule 53 (Exp : THIS)
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:46
+state 81, shifting to state 100
+loop
+yyn:0  state:100  yychar:-1
+ next yychar:278
+state 100, shifting to state 119
+loop
+yyn:0  state:119  yychar:-1
+ next yychar:40
+state 119, shifting to state 130
+loop
+yyn:0  state:130  yychar:-1
+ next yychar:279
+state 130, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 130 to state 139
+loop
+yyn:0  state:139  yychar:-1
+ next yychar:41
+reduce
+state 139, reducing 0 by rule 61 (LExpList :)
+reduce
+after reduction, shifting from state 139 to state 144
+loop
+state 144, reducing 2 by rule 58 (LExpOpc : Exp LExpList)
+reduce
+after reduction, shifting from state 130 to state 140
+loop
+yyn:0  state:140  yychar:41
+state 140, shifting to state 145
+loop
+state 145, reducing 6 by rule 48 (Exp : Exp '.' IDENT '(' LExpOpc ')')
+reduce
+after reduction, shifting from state 60 to state 81
+loop
+yyn:0  state:81  yychar:-1
+ next yychar:41
+state 81, shifting to state 102
+loop
+state 102, reducing 0 by rule 34 ($$7 :)
+reduce
+after reduction, shifting from state 102 to state 121
+loop
+yyn:0  state:121  yychar:-1
+ next yychar:272
+state 121, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 121 to state 132
+loop
+yyn:0  state:132  yychar:-1
+ next yychar:269
+state 132, shifting to state 141
+loop
+yyn:0  state:141  yychar:-1
+ next yychar:272
+state 141, shifting to state 53
+loop
+yyn:0  state:53  yychar:-1
+ next yychar:40
+state 53, shifting to state 62
+loop
+yyn:0  state:62  yychar:-1
+ next yychar:279
+state 62, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 62 to state 83
+loop
+yyn:0  state:83  yychar:-1
+ next yychar:41
+state 83, shifting to state 104
+loop
+yyn:0  state:104  yychar:-1
+ next yychar:59
+state 104, shifting to state 123
+loop
+state 123, reducing 5 by rule 38 (Statement : PRINT '(' Exp ')' ';')
+reduce
+after reduction, shifting from state 141 to state 146
+loop
+state 146, reducing 8 by rule 35 (Statement : IF '(' Exp ')' $$7 Statement ELSE Statement)
+reduce
+after reduction, shifting from state 90 to state 57
+loop
+state 57, reducing 2 by rule 26 (MoreStatement : MoreStatement Statement)
+reduce
+after reduction, shifting from state 72 to state 90
+loop
+yyn:0  state:90  yychar:-1
+ next yychar:265
+reduce
+state 90, reducing 2 by rule 18 (VarStatementList : Statement MoreStatement)
+reduce
+after reduction, shifting from state 126 to state 136
+loop
+state 136, reducing 5 by rule 17 (VarStatementList : Type IDENT $$4 ';' VarStatementList)
+reduce
+after reduction, shifting from state 126 to state 136
+loop
+state 136, reducing 5 by rule 17 (VarStatementList : Type IDENT $$4 ';' VarStatementList)
+reduce
+after reduction, shifting from state 59 to state 71
+loop
+yyn:0  state:71  yychar:265
+state 71, shifting to state 89
+loop
+yyn:0  state:89  yychar:-1
+ next yychar:279
+state 89, shifting to state 78
+loop
+state 78, reducing 1 by rule 49 (Exp : INTEGER_LITERAL)
+reduce
+after reduction, shifting from state 89 to state 109
+loop
+yyn:0  state:109  yychar:-1
+ next yychar:59
+state 109, shifting to state 127
+loop
+yyn:0  state:127  yychar:-1
+ next yychar:125
+state 127, shifting to state 137
+loop
+state 137, reducing 13 by rule 15 (Method : PUBLIC Type IDENT $$3 '(' Param ')' '{' VarStatementList RETURN Exp ';' '}')
+reduce
+after reduction, shifting from state 26 to state 32
+loop
+state 32, reducing 2 by rule 12 (MoreMethod : MoreMethod Method)
+reduce
+after reduction, shifting from state 38 to state 26
+loop
+yyn:0  state:26  yychar:-1
+
+
+
+Listagem da tabela de simbolos:
+
+Id: _erro_    	Classe: TipoBase	Tipo: null
+Id: int       	Classe: TipoBase	Tipo: null
+Id: bool      	Classe: TipoBase	Tipo: null
+Id: string    	Classe: TipoBase	Tipo: null
+Id: array     	Classe: TipoBase	Tipo: null
+Id: BS        	Classe: NomeClasse	Tipo: null
+		Id: number    	Classe: NomeParam	Tipo: array (ne: -1, tBase: null)
+		Id: size      	Classe: NomeParam	Tipo: int
+		Id: Start     	Classe: NomeFuncao	Tipo: int
+			Id: sz        	Classe: NomeParam	Tipo: int
+			Id: aux01     	Classe: NomeParam	Tipo: int
+			Id: aux02     	Classe: NomeParam	Tipo: int
+		Id: Search    	Classe: NomeFuncao	Tipo: boolean
+			Id: num       	Classe: NomeParam	Tipo: int
+			Id: bs01      	Classe: NomeParam	Tipo: boolean
+			Id: right     	Classe: NomeParam	Tipo: int
+			Id: left      	Classe: NomeParam	Tipo: int
+			Id: var_cont  	Classe: NomeParam	Tipo: boolean
+			Id: medium    	Classe: NomeParam	Tipo: int
+			Id: aux01     	Classe: NomeParam	Tipo: int
+			Id: nt        	Classe: NomeParam	Tipo: int
+		Id: Div       	Classe: NomeFuncao	Tipo: int
+			Id: num       	Classe: NomeParam	Tipo: int
+			Id: count01   	Classe: NomeParam	Tipo: int
+			Id: count02   	Classe: NomeParam	Tipo: int
+			Id: aux03     	Classe: NomeParam	Tipo: int
+		Id: Compare   	Classe: NomeFuncao	Tipo: boolean
+			Id: num1      	Classe: NomeParam	Tipo: int
+			Id: num2      	Classe: NomeParam	Tipo: int
+			Id: retval    	Classe: NomeParam	Tipo: boolean
+			Id: aux02     	Classe: NomeParam	Tipo: int
+		Id: Print     	Classe: NomeFuncao	Tipo: int
+			Id: j         	Classe: NomeParam	Tipo: int
+		Id: Init      	Classe: NomeFuncao	Tipo: int
+			Id: sz        	Classe: NomeParam	Tipo: int
+			Id: j         	Classe: NomeParam	Tipo: int
+			Id: k         	Classe: NomeParam	Tipo: int
+			Id: aux02     	Classe: NomeParam	Tipo: int
+			Id: aux01     	Classe: NomeParam	Tipo: int
+
+
+END testes/BinarySearch.java

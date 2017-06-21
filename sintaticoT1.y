@@ -17,6 +17,7 @@
 
 
 %type <obj> Type
+%type <obj> BaseType
 %type <obj> Exp
 %type <sval> IDENT
 %type <ival> INT
@@ -94,10 +95,12 @@ MoreStatement : MoreStatement Statement
               |
               ;
 
-
-Type :  INT '[' ']'   { $$ = Tp_ARRAY; }
+BaseType :  INT '[' ']'   { $$ = Tp_ARRAY; }
      |  BOOL          { $$ = Tp_BOOL; }
-     |  INT           { $$ = Tp_INT; }
+     |  INT           { $$ = Tp_INT; } 
+     ;
+
+Type :  BaseType 
 	   | 	IDENT {  
             TS_entry nodo = ts.pesquisa($1);
             if (nodo != null) $$ = nodo;
@@ -113,24 +116,24 @@ Statement 	: 	'{' MoreStatement '}'
 	| 	IF '(' Exp ')' 
                   {
                         if ( ((TS_entry)$3).getTipo() != Tp_BOOL.getTipo()) 
-                           yyerror("(statement) expressão (if) deve ser lógica "+((TS_entry)$3).getTipo());
+                           yyerror("(statement if) expressão (if) deve ser lógica "+((TS_entry)$3).getTipo());
                   }  Statement ELSE Statement  
 	| 	WHILE '(' Exp ')' 
                  {
                         if ( ((TS_entry)$3).getTipo() != Tp_BOOL.getTipo()) 
-                           yyerror("(statement) expressão (while) deve ser lógica "+((TS_entry)$3).getTipo());
+                           yyerror("(statement while) expressão (while) deve ser lógica "+((TS_entry)$3).getTipo());
                   } Statement
 	| 	PRINT '(' Exp ')' ';'
                  {
                         if ( ((TS_entry)$3).getTipo() != Tp_STRING.getTipo()) 
-                           yyerror("(statement) expressão (print) deve ser string "+((TS_entry)$3).getTipo());
+                           yyerror("(statement print) expressão (print) deve ser string "+((TS_entry)$3).getTipo());
                   } 
 	| 	IDENT '=' Exp ';' { 
                   TS_entry nodo = funcaoAtual.pesquisa($1);
                   if (nodo == null) nodo = classeAtual.pesquisa($1); 
 
-                  if (nodo == null) yyerror("(statement) var <" + $1 + "> nao declarada");                
-                  else if (nodo.getTipo() != $3 ) yyerror("(statement) tipos incompativeis, variavel: " + $1 + " com " + $3); 
+                  if (nodo == null) yyerror("(statement ident) var <" + $1 + "> nao declarada");                
+                  else if (nodo.getTipo() != $3 ) yyerror("(statement other) tipos incompativeis, variavel: " + $1 + " com " + $3); 
         }
 	| 	IDENT '[' Exp ']' '=' Exp ';'   
   ;
@@ -267,14 +270,14 @@ LExpList : ',' Exp  LExpList
                     if (A != Tp_ERRO && A == B)
                       return A;
                     else
-                         yyerror("(sem) tipos incomp. para atribuicao: "+ A.getTipoStr() + " = "+B.getTipoStr());
+                         yyerror("(igual) tipos incomp. para atribuicao: "+ A.getTipoStr() + " = "+B.getTipoStr());
                     break;
               case '-' :
               case '*' :
                     if ( A == Tp_INT && A == B)
                           return Tp_INT;
                     else
-                        yyerror("(sem) tipos incomp.: "+ A.getTipoStr() + " + "+B.getTipoStr());
+                        yyerror("(vezes || menos ) tipos incomp.: "+ A.getTipoStr() + " + "+B.getTipoStr());
                     break;
               case '+' :
                     if ( A == Tp_INT && A == B)
@@ -282,7 +285,7 @@ LExpList : ',' Exp  LExpList
                     else if (A == Tp_STRING || B == Tp_STRING)
                         return Tp_STRING;
                     else
-                        yyerror("(sem) tipos incomp. para soma: "+ A.getTipoStr() + " + "+B.getTipoStr());
+                        yyerror("(mais) tipos incomp. para soma: "+ A.getTipoStr() + " + "+B.getTipoStr());
                     break;
              case '<' :
              case '>' :
