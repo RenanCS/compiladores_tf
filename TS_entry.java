@@ -102,6 +102,7 @@ public TabSimb getLocais() {
       //else if (tipo==Parser.Tp_STRUCT) return "struct";
       else if (tipo==Parser.Tp_ARRAY)  return "array";
       else if (tipo==Parser.Tp_ERRO)  return  "_erro_";
+      else if (tipo==Parser.Tp_CLASS)  return  tipo.getId();
 	    else                             return "erro/tp";
    }
 
