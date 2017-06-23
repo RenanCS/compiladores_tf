@@ -38,9 +38,10 @@ MainClass : CLASS IDENT '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENT ')'
           ;
 
 Class : 	CLASS IDENT {  
-                          if (ts.pesquisa($2) != null) yyerror("(Class) classe: " + $2 + " ja declarada.");
-                          else classeAtual = ts.insert(new TS_entry($2, Tp_CLASS, ClasseID.NomeClasse)).getLocais();
-                      } ExtendsClass '{' VarMethodDeclarationList '}'
+                        if (ts.pesquisa($2) != null) yyerror("(Class) classe: " + $2 + " ja declarada.");
+                        else classeAtual = ts.insert(new TS_entry($2, Tp_CLASS, ClasseID.NomeClasse)).getLocais();
+                      } 
+					  ExtendsClass '{' VarMethodDeclarationList '}'
                  ;
 
 ExtendsClass : EXTENDS IDENT {
@@ -52,11 +53,7 @@ ExtendsClass : EXTENDS IDENT {
 VarMethodDeclarationList : Type IDENT  {
                                 if (classeAtual.pesquisa($2) != null) yyerror("Tipo: " + $2 + " ja foi declarado");
                                 else classeAtual.insert(new TS_entry($2, ((TS_entry)$1), ClasseID.VarGlobal)); 
-                                yyerror("BUG --------------   -------------- >" +  $1);
-                               
-                                yyerror("FIM --------------   -------------- >" + ($1 instanceof TS_entry) + "\n\n\n\n");
-
-                            } ';' VarMethodDeclarationList
+                        } ';' VarMethodDeclarationList
                          | MoreMethod
                          ;
 
@@ -100,17 +97,22 @@ MoreStatement : MoreStatement Statement
               ;
 
 BaseType :  INT '[' ']'   { $$ = Tp_ARRAY; }
-     |  BOOL          { $$ = Tp_BOOL; }
-     |  INT           { $$ = Tp_INT; } 
+     |  BOOL              { $$ = Tp_BOOL; }
+     |  INT               { $$ = Tp_INT; } 
      ;
 
 Type :  BaseType { $$ = $1; }
 	   | 	IDENT {  
             TS_entry nodo = ts.pesquisa($1);
-            if (nodo != null) $$ = nodo;
-            else {
-                yyerror("Tipo: " + $1 + " nao existe");
+            if (nodo == null) { 
+              yyerror("Tipo: " + $1 + " nao existe");
                 $$ = Tp_ERRO;
+            }
+            else if (nodo.getTipo() != Tp_CLASS){
+             yyerror("Tipo: " + $1 + " nao eh classe");
+            }
+            else {
+               $$ = nodo;
             }
          }
      ;
@@ -147,7 +149,18 @@ Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_ent
     | Exp '+' Exp                                 { $$ = validaTipo('+', (TS_entry)$1, (TS_entry)$3); }
     | Exp '-' Exp                                 { $$ = validaTipo('-', (TS_entry)$1, (TS_entry)$3); }
     | Exp '*'Exp                                  { $$ = validaTipo('*', (TS_entry)$1, (TS_entry)$3); }
-  	| Exp '[' Exp ']'                        { $$ = Tp_ERRO; }
+  	| Exp '[' Exp ']'                             { 
+
+                                                   if ($1 != Tp_ARRAY){
+                                                            yyerror(" $1 deve ser tipo array, recebeu " + $1);
+                                                   }
+                                                   else if( $3 != Tp_INT){
+                                                           yyerror(" $3 deve ser tipo int, recebeu " + $3);
+                                                   }                                                       
+                                                   else {                                                    
+                                                      $$ = Tp_ARRAY;
+                                                   }  
+                                                  }
   	| Exp '.' LEN  { 
               if ($1 == Tp_ARRAY)
               $$ = Tp_INT; 
@@ -157,30 +170,35 @@ Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_ent
               }
             }
   	| Exp '.' IDENT '(' ParamMethod ')'     { 
+            
             if ($1 instanceof TabSimb){
+
               TS_entry nodo = ((TabSimb)$1).pesquisa($3);
+
               if(nodo != null){
                   $$ = nodo.getTipo();
-              } else  {
+              } 
+              else{
                 yyerror("(exp . IDENT ( ParamMethod )) nao encontrou este metodo:" + $1); 
                 $$ = Tp_ERRO; 
               }
-            } else {
+            } 
+            else {
               yyerror("(exp . IDENT ( ParamMethod )) tipo errado encontrou:" + $1 + " nome " + $3); 
               $$ = Tp_ERRO; 
             }
         }
-  	| INTEGER_LITERAL { $$ = Tp_INT; }
-  	| TRUE { $$ = Tp_BOOL; }
-  	| FALSE { $$ = Tp_BOOL; }
+  	| INTEGER_LITERAL  { $$ = Tp_INT; }
+  	| TRUE             { $$ = Tp_BOOL; }
+  	| FALSE            { $$ = Tp_BOOL; }
   	| IDENT { 
+           
             TS_entry nodo = funcaoAtual.pesquisa($1);
             if (nodo == null) nodo = classeAtual.pesquisa($1); 
-
             if (nodo == null) yyerror("(exp) var <" + $1 + "> nao declarada");         
             else $$ = nodo.getTipo();
         }   
-  	| THIS  { $$ = classeAtual; }
+  	| THIS           { $$ = classeAtual; }
   	| NEW INT '[' Exp ']' { 
               if($4 != Tp_INT) yyerror("(exp) tipos incompativeis, deveria ser INT: " + $4);
               $$ = Tp_ARRAY; 
@@ -190,7 +208,11 @@ Exp : Exp AND Exp                                 { $$ = validaTipo(AND, (TS_ent
         if(nodo == null){
           yyerror("(NEW IDENT ()) classe nao encontrada: " + $2);
           $$ = Tp_ERRO;   
-        } else $$ = nodo.getLocais(); 
+        } 
+        else {
+          $$ = nodo.getLocais(); 
+        }
+
       }
   	| '!' Exp  { if($2 == Tp_BOOL) $$ = $2; else yyerror("(! exp) tipo incompativel, deveria ser bool: " + $2);}
   	| '(' Exp ')' { $$ = $2; }
