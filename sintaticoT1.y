@@ -66,7 +66,18 @@ MoreMethod : MoreMethod Method
 Method : PUBLIC Type IDENT  {
                               if (classeAtual.pesquisa($3) != null) yyerror("Funcao: " + $3 + " ja foi declarada");
                               else funcaoAtual = classeAtual.insert(new TS_entry($3, (TS_entry)$2, ClasseID.NomeFuncao)).getLocais();
-                      } '(' Param ')' '{' VarStatementList RETURN Exp ';' '}'
+                      } 
+                      '(' Param ')' 
+                      '{' 
+                        VarStatementList RETURN Exp 
+                              {
+                                if ($2 != $11) 
+                                      yyerror("Tipo de retorno incompativel");
+                              }
+                              
+                      ';' 
+                      '}'
+
                   ;
 
 VarStatementList : Type IDENT {
