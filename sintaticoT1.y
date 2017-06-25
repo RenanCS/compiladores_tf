@@ -45,8 +45,17 @@ Class : 	CLASS IDENT {
                  ;
 
 ExtendsClass : EXTENDS IDENT {
-                    if (ts.pesquisa($2) == null) yyerror("(ExtendsClass) classe: " + $2 + " nao definida.");
-                  }
+                    TS_entry nodo = ts.pesquisa($2);
+
+                    if (nodo == null){
+                      yyerror("(ExtendsClass) classe: " + $2 + " nao definida.");
+                    }
+                    else if(nodo.getTipo() != Tp_CLASS){
+                      yyerror("(ExtendsClass) nao eh tipo valido para extends");
+                    }else{
+
+                    }
+                }
            |
            ;
 
@@ -85,7 +94,7 @@ VarStatementList : Type IDENT {
                           else funcaoAtual.insert(new TS_entry($2, (TS_entry)$1, ClasseID.VarLocal));     
                     } ';' VarStatementList
 			           | Statement MoreStatement
-				         |
+				        |
                  ;
 
 Param  : Type IDENT {

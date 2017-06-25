@@ -2,8 +2,8 @@ import java.util.ArrayList;
 /**
  * Write a description of class Paciente here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucas Ranzi, Renan Carvalho e Wagner Henz 
+ * @version (24/06/2017)
  */
 public class TS_entry
 {
@@ -12,6 +12,7 @@ public class TS_entry
    private TS_entry tipo;
    private int nElem;
    private TS_entry tipoBase;
+   private TS_entry extendClass;
    private TabSimb locais;
 
 
@@ -55,6 +56,16 @@ public TabSimb getLocais() {
        return tipoBase; 
    }
 
+    public TS_entry getExtends() {
+       return extendClass; 
+    }
+
+    public void setExtends(TS_entry extendParam){
+        extendClass = extendParam;
+    }
+
+
+
    public String toString(String space){
 
        StringBuilder aux = new StringBuilder("");
@@ -95,22 +106,17 @@ public TabSimb getLocais() {
 
     public String tipo2str(TS_entry tipo) {
       if (tipo == null)  return "null"; 
-     	else if (tipo==Parser.Tp_INT)    return "int"; 
-      else if (tipo==Parser.Tp_BOOL)   return "boolean"; 
-      //else if (tipo==Parser.Tp_FLOAT)  return "float";
-      else if (tipo==Parser.Tp_STRING) return "string";
       //else if (tipo==Parser.Tp_STRUCT) return "struct";
+      //else if (tipo==Parser.Tp_FLOAT)  return "float";
+     
+      else if (tipo==Parser.Tp_INT)    return "int"; 
+      else if (tipo==Parser.Tp_BOOL)   return "boolean"; 
+      else if (tipo==Parser.Tp_STRING) return "string";
       else if (tipo==Parser.Tp_ARRAY)  return "array";
       else if (tipo==Parser.Tp_ERRO)  return  "_erro_";
       else if (tipo==Parser.Tp_CLASS)  return  tipo.getId();
-	    else                             return "erro/tp";
+	  else                             return "erro/tp";
    }
-
-
-
-   // public void insereLocal(String id, int tp, ClasseID cl) {
-   //      locais.insert(new TS_entry(id, tp, cl));
-   //}
 
 }
 
